@@ -164,21 +164,25 @@ def filter_games(games, max_visits=500_000, min_players=100, min_approval=0):
 
 def fetch_games_batch(cursor=0, limit=BATCH_SIZE):
     """Fetch a batch of games from the API."""
-    url = f"https://games.roblox.com/v2/games?sortOrder=Asc&limit={limit}&pageNumber={int(cursor) + 1}"
+    page = int(cursor) + 1
+    url = f"https://games.roblox.com/v2/games?sortOrder=Asc&limit={limit}&pageNumber={page}"
     try:
         headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0"
         }
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
-        data = response.json()
+        response = requests.get(url, headers=headers, timeout=15)
 
-        if 'data' in data:
-            return {
-                'data': data['data'],
-                'nextCursor': int(cursor) + 1 if data.get('data') else ''
-            }
-        return data
+        if response.status_code == 200:
+            data = response.json()
+            if 'data' in data and data['data']:
+                return {
+                    'data': data['data'],
+                    'nextCursor': cursor + 1
+                }
+            return None
+        else:
+            print(f"❌ API Error: Status {response.status_code}")
+            return None
     except Exception as e:
         print(f"❌ API Error: {e}")
         return None
