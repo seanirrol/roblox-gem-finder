@@ -3,6 +3,6 @@
     "builder": "dockerfile"
   },
   "deploy": {
-    "startCommand": "python roblox_gem_finder.py --loop --save"
+    "startCommand":
   }
 }
