@@ -6,7 +6,6 @@ Provides REST API and serves React UI.
 
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
-from functools import wraps
 import database
 import sqlite3
 import json
@@ -17,19 +16,6 @@ CORS(app)
 
 # Initialize database on startup
 database.init_db()
-
-# ─────────────────────────────────────────────────────
-# PASSWORD PROTECTION
-# ─────────────────────────────────────────────────────
-
-def require_password(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        password = request.args.get('pwd')
-        if password != 'Mos2moi2':
-            return jsonify({"error": "Unauthorized"}), 401
-        return f(*args, **kwargs)
-    return decorated_function
 
 # ─────────────────────────────────────────────────────
 # API ENDPOINTS
@@ -121,7 +107,6 @@ def health():
 # ─────────────────────────────────────────────────────
 
 @app.route('/')
-@require_password
 def serve_ui():
     """Serve the React UI."""
     return send_from_directory('.', 'index.html')
