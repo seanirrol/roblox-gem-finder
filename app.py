@@ -108,7 +108,13 @@ def health():
 
 @app.route('/')
 def serve_ui():
-    """Serve the React UI."""
+    """Serve the React UI with password protection."""
+    required_password = os.environ.get('DASHBOARD_PASSWORD', 'roblox123')
+    provided_password = request.args.get('pwd', '')
+
+    if provided_password != required_password:
+        return jsonify({"error": "Unauthorized - password required"}), 401
+
     return send_from_directory('.', 'index.html')
 
 @app.route('/<path:path>')
