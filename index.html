@@ -21,9 +21,8 @@
         }
 
         .container {
-            flex: 1;
+            max-width: 1400px;
             margin: 0 auto;
-            padding-right: 40px;
         }
 
         header {
@@ -60,19 +59,12 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             border: 1px solid #3a4557;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
         }
 
         .stat-label {
             color: #a8afc0;
             font-size: 12px;
             margin-bottom: 10px;
-            font-weight: 500;
         }
 
         .stat-value {
@@ -116,35 +108,17 @@
             padding: 16px;
             background: #0d0f18;
             transition: all 0.3s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
         }
 
         .game-card:hover {
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
             border-color: #667eea;
-            background: #1a1f2e;
-        }
-
-        .game-card.selected {
-            border-color: #667eea;
-            background: #1a1f2e;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
-        }
-
-        .game-checkbox {
-            width: 14px;
-            height: 14px;
-            cursor: pointer;
-            margin-right: 12px;
-            accent-color: #667eea;
         }
 
         .game-title {
             font-weight: bold;
             color: #667eea;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -175,7 +149,6 @@
         .game-stat-value {
             color: #e0e0e0;
             font-weight: 600;
-            margin-top: 4px;
         }
 
         .game-link {
@@ -184,16 +157,14 @@
             text-decoration: none;
             font-size: 13px;
             word-break: break-all;
-            transition: all 0.3s ease;
             font-weight: bold;
         }
 
         .game-link:hover {
             text-decoration: underline;
-            color: #7c8eff;
         }
 
-        .sent-btn {
+        .archive-btn {
             padding: 6px 14px;
             background: #667eea;
             color: white;
@@ -202,73 +173,12 @@
             cursor: pointer;
             font-size: 12px;
             font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .sent-btn:hover {
-            background: #7c8eff;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .bulk-actions {
-            background: #1a1f2e;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 2px solid #667eea;
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .bulk-actions label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .bulk-actions input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-            accent-color: #667eea;
-        }
-
-        .archive-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            margin-top: 12px;
+            width: 100%;
         }
 
         .archive-btn:hover {
             background: #7c8eff;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .delete-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .delete-btn:hover {
-            background: #7c8eff;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
         .empty-state {
@@ -287,104 +197,11 @@
             padding: 20px;
             color: #a8afc0;
         }
-
-        .status-badge {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
-            background: #0d0f18;
-            border: 1px solid #3a4557;
-            border-radius: 8px;
-            font-size: 12px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #00ff00;
-            animation: pulse 2s infinite;
-        }
-
-        .status-dot.idle {
-            background: #888;
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .console-sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 350px;
-            height: 100vh;
-            background: #0d0f18;
-            border-right: 2px solid #00ff00;
-            padding: 20px;
-            overflow-y: auto;
-            font-family: 'Courier New', monospace;
-            z-index: 1000;
-        }
-
-        .console-title {
-            color: #00ff00;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px #00ff00;
-            font-size: 14px;
-        }
-
-        .console-log {
-            color: #00ff00;
-            font-size: 11px;
-            line-height: 1.4;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            margin-bottom: 8px;
-            text-shadow: 0 0 5px #00ff0044;
-        }
-
-        .console-log.warning {
-            color: #ffaa00;
-        }
-
-        .console-log.error {
-            color: #ff3333;
-        }
-
-        .container {
-            margin-left: 370px;
-        }
-
-        body {
-            display: flex;
-        }
-
-        header {
-            position: relative;
-        }
     </style>
 </head>
 <body>
-    <div class="console-sidebar" id="console">
-        <div class="console-title">⚡ SCANNER CONSOLE</div>
-        <div id="console-logs"></div>
-    </div>
-
     <div class="container">
         <header>
-            <div class="status-badge" id="status-badge">
-                <div class="status-dot idle" id="status-dot"></div>
-                <span id="status-text">Idle</span>
-            </div>
             <h1>🎮 Roblox Gem Finder</h1>
             <p class="subtitle">Discover hidden gems on Roblox with high player engagement</p>
         </header>
@@ -412,40 +229,12 @@
             <div class="games-header">
                 <h2>🆕 New Games Found</h2>
             </div>
-            <div class="bulk-actions" id="new-bulk-actions" style="display: none;">
-                <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
-                    <label style="color: #e0e0e0;">
-                        <input type="checkbox" id="new-select-all" onchange="toggleSelectAll('new')" style="width: 14px; height: 14px;">
-                        <span>Select All</span>
-                    </label>
-                    <button class="archive-btn" onclick="bulkArchive()">Archive Selected</button>
-                    <span id="new-selected-count" style="color: #888;">0 selected</span>
-                    <div style="margin-left: auto;">
-                        <select id="filter-select" onchange="applyFilter(this.value)" style="background: #262626; color: #e0e0e0; border: 1px solid #3a3a3a; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
-                            <option value="">Filter By...</option>
-                            <option value="recent">Most Recent</option>
-                            <option value="players">Most Players</option>
-                            <option value="visits">Most Visits</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
             <div class="games-list" id="games-container"></div>
         </div>
 
         <div class="games-section">
             <div class="games-header">
                 <h2>📦 Archived Games</h2>
-            </div>
-            <div class="bulk-actions" id="archive-bulk-actions" style="display: none;">
-                <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
-                    <label style="color: #e0e0e0;">
-                        <input type="checkbox" id="archive-select-all" onchange="toggleSelectAll('archive')" style="width: 14px; height: 14px;">
-                        <span>Select All</span>
-                    </label>
-                    <button class="delete-btn" onclick="bulkDeleteArchived()">Delete Permanently</button>
-                    <span id="archive-selected-count" style="color: #888;">0 selected</span>
-                </div>
             </div>
             <div class="games-list" id="archived-container"></div>
         </div>
@@ -454,38 +243,6 @@
     <script>
         let allGames = [];
         let archivedGames = [];
-
-        async function loadScannerLogs() {
-            try {
-                const response = await fetch('/api/scanner/logs');
-                const data = await response.json();
-                const logsContainer = document.getElementById('console-logs');
-
-                if (data.logs && data.logs.length > 0) {
-                    logsContainer.innerHTML = data.logs.map(log => {
-                        let className = 'console-log';
-                        if (log.message.includes('ERROR') || log.message.includes('❌')) className += ' error';
-                        else if (log.message.includes('WARNING') || log.message.includes('⚠️')) className += ' warning';
-                        return `<div class="${className}">${log.message}</div>`;
-                    }).join('');
-
-                    // Update status
-                    const lastLog = data.logs[data.logs.length - 1];
-                    const statusDot = document.getElementById('status-dot');
-                    const statusText = document.getElementById('status-text');
-
-                    if (lastLog.message.includes('STARTING')) {
-                        statusDot.classList.remove('idle');
-                        statusText.textContent = 'Scanning...';
-                    } else if (lastLog.message.includes('COMPLETE')) {
-                        statusDot.classList.add('idle');
-                        statusText.textContent = 'Idle';
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading logs:', error);
-            }
-        }
 
         async function loadStats() {
             try {
@@ -503,32 +260,22 @@
             }
         }
 
-        async function loadGames(type = 'all') {
+        async function loadGames() {
             try {
                 const container = document.getElementById('games-container');
                 container.innerHTML = '<div class="loading">Loading...</div>';
 
-                let url = '/api/games';
-                if (type === 'trending') {
-                    url = '/api/games/trending';
-                }
-
-                const response = await fetch(url);
+                const response = await fetch('/api/games');
                 allGames = await response.json();
 
                 if (!allGames || allGames.length === 0) {
                     container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔍</div>No new games found yet</div>';
-                    document.getElementById('new-bulk-actions').style.display = 'none';
                     return;
                 }
 
-                document.getElementById('new-bulk-actions').style.display = 'flex';
                 container.innerHTML = allGames.map(game => `
-                    <div class="game-card" data-game-id="${game.id}">
-                        <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px;">
-                            <input type="checkbox" class="game-checkbox" onchange="updateSelectedCount('new')">
-                            <div class="game-title">${game.name || 'Unknown'}</div>
-                        </div>
+                    <div class="game-card">
+                        <div class="game-title">${game.name || 'Unknown'}</div>
                         <div class="game-stats">
                             <div class="game-stat">
                                 <div class="game-stat-label">👥 Players</div>
@@ -543,10 +290,8 @@
                                 <div class="game-stat-value">${game.approval_rate || '?'}%</div>
                             </div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-                            <a href="${game.url}" target="_blank" class="game-link">Open on Roblox →</a>
-                            <button class="sent-btn" onclick="archiveGame(${game.id})">Sent</button>
-                        </div>
+                        <a href="${game.url}" target="_blank" class="game-link">Open on Roblox →</a>
+                        <button class="archive-btn" onclick="archiveGame(${game.id})">Archive</button>
                     </div>
                 `).join('');
             } catch (error) {
@@ -563,17 +308,12 @@
 
                 if (!archivedGames || archivedGames.length === 0) {
                     container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div>No archived games yet</div>';
-                    document.getElementById('archive-bulk-actions').style.display = 'none';
                     return;
                 }
 
-                document.getElementById('archive-bulk-actions').style.display = 'flex';
                 container.innerHTML = archivedGames.map(game => `
-                    <div class="game-card" data-game-id="${game.id}">
-                        <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px;">
-                            <input type="checkbox" class="game-checkbox" onchange="updateSelectedCount('archive')">
-                            <div class="game-title">${game.name || 'Unknown'}</div>
-                        </div>
+                    <div class="game-card">
+                        <div class="game-title">${game.name || 'Unknown'}</div>
                         <div class="game-stats">
                             <div class="game-stat">
                                 <div class="game-stat-label">👥 Players</div>
@@ -588,9 +328,7 @@
                                 <div class="game-stat-value">${game.approval_rate || '?'}%</div>
                             </div>
                         </div>
-                        <div style="margin-top: 12px;">
-                            <a href="${game.url}" target="_blank" class="game-link">Open on Roblox →</a>
-                        </div>
+                        <a href="${game.url}" target="_blank" class="game-link">Open on Roblox →</a>
                     </div>
                 `).join('');
             } catch (error) {
@@ -603,7 +341,7 @@
             try {
                 const response = await fetch(`/api/games/${gameId}/archive`, { method: 'POST' });
                 if (response.ok) {
-                    await loadGames('all');
+                    await loadGames();
                     await loadArchivedGames();
                 }
             } catch (error) {
@@ -611,153 +349,19 @@
             }
         }
 
-        function toggleSelectAll(type) {
-            const checkbox = document.getElementById(`${type}-select-all`);
-            const cards = document.querySelectorAll(`#${type === 'new' ? 'games' : 'archived'}-container .game-card`);
-            cards.forEach(card => {
-                const cb = card.querySelector('.game-checkbox');
-                if (cb) cb.checked = document.getElementById(`${type}-select-all`).checked;
-                card.classList.toggle('selected', cb.checked);
-            });
-            updateSelectedCount(type);
-        }
-
-        function updateSelectedCount(type) {
-            const cards = document.querySelectorAll(`#${type === 'new' ? 'games' : 'archived'}-container .game-card`);
-            let count = 0;
-            cards.forEach(card => {
-                const checkbox = card.querySelector('.game-checkbox');
-                if (checkbox && checkbox.checked) {
-                    count++;
-                    card.classList.add('selected');
-                } else {
-                    card.classList.remove('selected');
-                }
-            });
-            document.getElementById(`${type}-selected-count`).textContent = `${count} selected`;
-        }
-
-        async function bulkArchive() {
-            const checkboxes = document.querySelectorAll('#games-container .game-checkbox:checked');
-            const gameIds = Array.from(checkboxes).map(cb => {
-                const card = cb.closest('.game-card');
-                return parseInt(card.getAttribute('data-game-id'));
-            });
-
-            if (gameIds.length === 0) {
-                alert('No games selected');
-                return;
-            }
-
-            try {
-                const response = await fetch('/api/games/archive/bulk', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ game_ids: gameIds })
-                });
-                if (response.ok) {
-                    await loadGames('all');
-                    await loadArchivedGames();
-                }
-            } catch (error) {
-                console.error('Error archiving games:', error);
-            }
-        }
-
-        async function bulkDeleteArchived() {
-            const checkboxes = document.querySelectorAll('#archived-container .game-checkbox:checked');
-            const gameIds = Array.from(checkboxes).map(cb => {
-                const card = cb.closest('.game-card');
-                return parseInt(card.getAttribute('data-game-id'));
-            });
-
-            if (gameIds.length === 0) {
-                alert('No games selected');
-                return;
-            }
-
-            if (!confirm(`Delete ${gameIds.length} archived game(s) permanently? This cannot be undone.`)) {
-                return;
-            }
-
-            try {
-                const response = await fetch('/api/games/delete/bulk', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ game_ids: gameIds })
-                });
-                if (response.ok) {
-                    await loadArchivedGames();
-                }
-            } catch (error) {
-                console.error('Error deleting games:', error);
-            }
-        }
-
-        function applyFilter(filterType) {
-            let sorted = [...allGames];
-
-            if (filterType === 'recent') {
-                sorted = allGames;
-            } else if (filterType === 'players') {
-                sorted.sort((a, b) => (b.active_players || 0) - (a.active_players || 0));
-            } else if (filterType === 'visits') {
-                sorted.sort((a, b) => (b.visits || 0) - (a.visits || 0));
-            }
-
-            const container = document.getElementById('games-container');
-            container.innerHTML = sorted.map(game => `
-                <div class="game-card" data-game-id="${game.id}">
-                    <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px;">
-                        <input type="checkbox" class="game-checkbox" onchange="updateSelectedCount('new')">
-                        <div class="game-title">${game.name || 'Unknown'}</div>
-                    </div>
-                    <div class="game-stats">
-                        <div class="game-stat">
-                            <div class="game-stat-label">👥 Players</div>
-                            <div class="game-stat-value">${(game.active_players || 0).toLocaleString()}</div>
-                        </div>
-                        <div class="game-stat">
-                            <div class="game-stat-label">📊 Visits</div>
-                            <div class="game-stat-value">${formatVisits(game.visits || 0)}</div>
-                        </div>
-                        <div class="game-stat">
-                            <div class="game-stat-label">👍 Approval</div>
-                            <div class="game-stat-value">${game.approval_rate || '?'}%</div>
-                        </div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-                        <a href="${game.url}" target="_blank" class="game-link">Open on Roblox →</a>
-                        <button class="sent-btn" onclick="archiveGame(${game.id})">Sent</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
         function formatVisits(visits) {
+            if (visits >= 1_000_000_000) return (visits / 1_000_000_000).toFixed(1) + 'B';
             if (visits >= 1_000_000) return (visits / 1_000_000).toFixed(1) + 'M';
             if (visits >= 1_000) return (visits / 1_000).toFixed(1) + 'K';
             return visits.toString();
         }
 
-        window.addEventListener('load', () => {
-            loadStats();
-            loadGames('all');
-            loadArchivedGames();
-            setInterval(loadStats, 30000);
-            setInterval(loadGames, 60000);
-            setInterval(loadArchivedGames, 60000);
-        });
-        // Initialize on load
         window.addEventListener('load', async () => {
             await loadStats();
-            await loadGames('all');
+            await loadGames();
             await loadArchivedGames();
-            await loadScannerLogs();
 
-            // Auto-refresh every 5 seconds
-            setInterval(loadStats, 5000);
-            setInterval(loadScannerLogs, 5000);
+            setInterval(loadStats, 10000);
         });
     </script>
 </body>

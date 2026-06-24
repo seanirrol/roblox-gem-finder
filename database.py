@@ -80,23 +80,12 @@ def init_db():
         )
     ''')
 
-    # Scanner logs - track console output
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS scanner_logs (
-            id INTEGER PRIMARY KEY,
-            message TEXT NOT NULL,
-            log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-
     # Create indexes for performance
     c.execute('CREATE INDEX IF NOT EXISTS idx_game_universe ON games(universe_id)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_stats_game ON game_stats(game_id)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_stats_scan ON game_stats(scan_time)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_tier_game ON tier_matches(game_id)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_blacklist_name ON blacklist(normalized_name)')
-    c.execute('CREATE INDEX IF NOT EXISTS idx_logs_time ON scanner_logs(log_time)')
-
     conn.commit()
     conn.close()
 
@@ -371,29 +360,3 @@ def get_stats():
     conn.close()
     return stats
 
-def add_log(message):
-    """Add a message to scanner logs."""
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    c.execute('INSERT INTO scanner_logs (message) VALUES (?)', (message,))
-    conn.commit()
-    conn.close()
-
-def get_logs(limit=50):
-    """Get recent scanner logs."""
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    c = conn.cursor()
-    c.execute('SELECT message, log_time FROM scanner_logs ORDER BY log_time DESC LIMIT ?', (limit,))
-    logs = [dict(row) for row in c.fetchall()]
-    conn.close()
-    return list(reversed(logs))
-
-def get_scanner_status():
-    """Get scanner status (last scan time)."""
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    c.execute('SELECT MAX(scan_time) FROM scans')
-    last_scan = c.fetchone()[0]
-    conn.close()
-    return {"last_scan": last_scan}
