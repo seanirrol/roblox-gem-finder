@@ -133,4 +133,4 @@ def server_error(error):
 if __name__ == '__main__':
     print("🚀 Starting Roblox Gem Finder Web Server...")
     print("📊 Open http://localhost:5000 in your browser")
-    app.run(debug=False, host='127.0.0.1', port=5000, use_reloader=False)
+    app.run(debug=False, host='0.0.0.0', port=5000, use_reloader=False)
