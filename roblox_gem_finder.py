@@ -357,7 +357,7 @@ def main():
         print("🌐 Starting web server (http://localhost:5000)...")
         try:
             import app
-            app.app.run(debug=False, host='127.0.0.1', port=5000, use_reloader=False)
+            app.app.run(debug=False, host='0.0.0.0', port=5000, use_reloader=False)
         except Exception as e:
             print(f"❌ Error starting web server: {e}")
         return
