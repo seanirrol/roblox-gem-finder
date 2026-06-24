@@ -205,12 +205,12 @@
             background: linear-gradient(135deg, #3b0f8c, #6d28d9 38%, #7c3aed 62%, #4c1d95);
             padding: 32px 32px;
             display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 24px;
-            align-items: flex-start;
+            grid-template-columns: 1fr 350px;
+            gap: 32px;
+            align-items: center;
             position: relative;
             overflow: hidden;
-            min-height: 320px;
+            min-height: 380px;
         }
 
         .hero::before {
@@ -238,6 +238,17 @@
         .hero-content {
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 320px;
+            object-fit: contain;
         }
 
         .hero-badge {
@@ -545,26 +556,21 @@
         <section class="hero">
             <div class="hero-content">
                 <div class="hero-badge">◆ ROBLOX GEM FINDER</div>
-                <h1>Each Week We Find Super Cool <span class="italic">Hidden Gems For Your Loyal Gamers</span></h1>
-                <button class="hero-btn">+ Browse New Games</button>
-            </div>
-            <div class="console-panel">
-                <div class="console-header">📟 Console</div>
-                <div class="console-body" id="console-logs">
-                    <div class="console-line">Ready to scan...</div>
+                <div class="console-panel">
+                    <div class="console-header">📟 Console</div>
+                    <div class="console-body" id="console-logs">
+                        <div class="console-line">Ready to scan...</div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-robot">🤖</div>
+            <img src="roblox.png" alt="Roblox Characters" class="hero-image">
         </section>
 
         <!-- CONTENT -->
         <div class="container">
             <!-- NEW GAMES -->
             <section id="games-section">
-                <h2 class="section-header">
-                    🆕 New Games Found
-                    <span class="live-badge"><span class="live-dot"></span> LIVE</span>
-                </h2>
+                <h2 class="section-header">🆕 New Games Found</h2>
                 <div class="games-grid" id="games-container"></div>
             </section>
 
