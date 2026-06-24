@@ -97,6 +97,22 @@ def get_stats():
     stats = database.get_stats()
     return jsonify(stats)
 
+@app.route('/api/scanner/status', methods=['GET'])
+def scanner_status():
+    """Get scanner status and recent logs."""
+    status = database.get_scanner_status()
+    logs = database.get_logs(limit=50)
+    return jsonify({
+        "last_scan": status['last_scan'],
+        "logs": logs
+    })
+
+@app.route('/api/scanner/logs', methods=['GET'])
+def scanner_logs():
+    """Get recent scanner logs."""
+    logs = database.get_logs(limit=100)
+    return jsonify({"logs": logs})
+
 @app.route('/api/health', methods=['GET'])
 def health():
     """Health check endpoint."""

@@ -206,9 +206,11 @@ def fetch_game_details(universe_id):
 
 def run_scan(max_visits=500_000, min_players=100, min_approval=0, no_english_filter=False, **kwargs):
     """Run a single scan of Roblox games."""
+    msg = "🎮 STARTING ROBLOX GEM SCAN"
     print("\n" + "=" * 60)
-    print("🎮 STARTING ROBLOX GEM SCAN")
+    print(msg)
     print("=" * 60)
+    database.add_log(msg)
 
     start_time = time.time()
     collected_games = []
@@ -314,9 +316,11 @@ def run_scan(max_visits=500_000, min_players=100, min_approval=0, no_english_fil
     duration = time.time() - start_time
     database.record_scan(len(collected_games), games_with_details, new_games_found, duration)
 
+    msg = f"✓ SCAN COMPLETE - Found {new_games_found} new gems in {duration:.1f}s"
     print("\n" + "=" * 60)
-    print(f"✓ SCAN COMPLETE - Found {new_games_found} new gems in {duration:.1f}s")
+    print(msg)
     print("=" * 60)
+    database.add_log(msg)
 
     return new_games_found
 

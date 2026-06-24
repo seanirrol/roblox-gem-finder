@@ -286,11 +286,104 @@
             padding: 20px;
             color: #a8afc0;
         }
+
+        .status-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: #0d0f18;
+            border: 1px solid #3a4557;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.idle {
+            background: #888;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .console-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 350px;
+            height: 100vh;
+            background: #0d0f18;
+            border-right: 2px solid #00ff00;
+            padding: 20px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            z-index: 1000;
+        }
+
+        .console-title {
+            color: #00ff00;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #00ff00;
+            font-size: 14px;
+        }
+
+        .console-log {
+            color: #00ff00;
+            font-size: 11px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 8px;
+            text-shadow: 0 0 5px #00ff0044;
+        }
+
+        .console-log.warning {
+            color: #ffaa00;
+        }
+
+        .console-log.error {
+            color: #ff3333;
+        }
+
+        .container {
+            margin-left: 370px;
+        }
+
+        body {
+            display: flex;
+        }
+
+        header {
+            position: relative;
+        }
     </style>
 </head>
 <body>
+    <div class="console-sidebar" id="console">
+        <div class="console-title">⚡ SCANNER CONSOLE</div>
+        <div id="console-logs"></div>
+    </div>
+
     <div class="container">
         <header>
+            <div class="status-badge" id="status-badge">
+                <div class="status-dot idle" id="status-dot"></div>
+                <span id="status-text">Idle</span>
+            </div>
             <h1>🎮 Roblox Gem Finder</h1>
             <p class="subtitle">Discover hidden gems on Roblox with high player engagement</p>
         </header>
@@ -360,6 +453,38 @@
     <script>
         let allGames = [];
         let archivedGames = [];
+
+        async function loadScannerLogs() {
+            try {
+                const response = await fetch('/api/scanner/logs');
+                const data = await response.json();
+                const logsContainer = document.getElementById('console-logs');
+
+                if (data.logs && data.logs.length > 0) {
+                    logsContainer.innerHTML = data.logs.map(log => {
+                        let className = 'console-log';
+                        if (log.message.includes('ERROR') || log.message.includes('❌')) className += ' error';
+                        else if (log.message.includes('WARNING') || log.message.includes('⚠️')) className += ' warning';
+                        return `<div class="${className}">${log.message}</div>`;
+                    }).join('');
+
+                    // Update status
+                    const lastLog = data.logs[data.logs.length - 1];
+                    const statusDot = document.getElementById('status-dot');
+                    const statusText = document.getElementById('status-text');
+
+                    if (lastLog.message.includes('STARTING')) {
+                        statusDot.classList.remove('idle');
+                        statusText.textContent = 'Scanning...';
+                    } else if (lastLog.message.includes('COMPLETE')) {
+                        statusDot.classList.add('idle');
+                        statusText.textContent = 'Idle';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading logs:', error);
+            }
+        }
 
         async function loadStats() {
             try {
@@ -621,6 +746,17 @@
             setInterval(loadStats, 30000);
             setInterval(loadGames, 60000);
             setInterval(loadArchivedGames, 60000);
+        });
+        // Initialize on load
+        window.addEventListener('load', async () => {
+            await loadStats();
+            await loadGames('all');
+            await loadArchivedGames();
+            await loadScannerLogs();
+
+            // Auto-refresh every 5 seconds
+            setInterval(loadStats, 5000);
+            setInterval(loadScannerLogs, 5000);
         });
     </script>
 </body>
