@@ -1,0 +1,6 @@
+# Python 
+__pycache__/ 
+*.pyc 
+.env 
+.idea/ 
+roblox_gems.db 
