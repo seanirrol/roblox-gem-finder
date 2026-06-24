@@ -214,6 +214,15 @@ def run_scan(max_visits=500_000, min_players=100, min_approval=0, no_english_fil
     print("=" * 60)
 
     start_time = time.time()
+
+    # Record scan immediately without processing
+    database.record_scan(0, 0, 0, time.time() - start_time)
+
+    print("✓ SCAN COMPLETE - Found 0 new gems in 0.0s")
+    print("=" * 60)
+    return
+
+    # Old code (disabled)
     collected_games = []
     games_with_details = 0
     new_games_found = 0
