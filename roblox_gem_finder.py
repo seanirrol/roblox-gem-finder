@@ -164,7 +164,7 @@ def filter_games(games, max_visits=500_000, min_players=100, min_approval=0):
 
 def fetch_games_batch(cursor=0, limit=BATCH_SIZE):
     """Fetch a batch of games from the API."""
-    url = f"https://catalog.roblox.com/v1/search/items?category=Games&limit={limit}&cursor={cursor}"
+    url = f"https://games.roblox.com/v2/games?sortOrder=Asc&limit={limit}&pageNumber={int(cursor) + 1}"
     try:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0"
@@ -173,19 +173,10 @@ def fetch_games_batch(cursor=0, limit=BATCH_SIZE):
         response.raise_for_status()
         data = response.json()
 
-        # Transform catalog API response to match expected format
         if 'data' in data:
-            games = []
-            for item in data['data']:
-                games.append({
-                    'placeId': item.get('id'),
-                    'universeId': item.get('id'),
-                    'name': item.get('name', ''),
-                    'description': item.get('description', '')
-                })
             return {
-                'data': games,
-                'nextCursor': data.get('nextCursor', '')
+                'data': data['data'],
+                'nextCursor': int(cursor) + 1 if data.get('data') else ''
             }
         return data
     except Exception as e:
