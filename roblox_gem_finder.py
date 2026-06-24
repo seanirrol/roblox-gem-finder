@@ -33,7 +33,7 @@ if sys.platform == "win32":
 # ──────────────────────────────────────────────────────────
 
 ROBLOX_API = "https://www.roblox.com/web/tools/rbxonclick-api/lookup?assetId="
-GAMES_API_BASE = "https://games.roblox.com/v2/users/{}/games?accessFilter=Public&sortOrder=Asc&limit={}";
+GAMES_API_BASE = "https://games.roblox.com/v2/users/{}/games?accessFilter=Public&sortOrder=Asc&limit={}"
 GAME_DETAILS_API = "https://www.roblox.com/web/tools/rbxonclick-api/lookup?assetId={}"
 VISIT_API = "https://www.roblox.com/games/GetGamePlacesData?universeIds={}"
 
